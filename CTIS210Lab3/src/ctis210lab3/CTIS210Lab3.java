@@ -63,7 +63,6 @@ public class CTIS210Lab3 extends Canvas {
         frame.add(scoreDisplay);
         frame.pack();
         frame.setVisible(true);
-
     }
 
     /**
@@ -94,11 +93,27 @@ public class CTIS210Lab3 extends Canvas {
         */
     }
     
+    /**
+     * Gets the correct shade from the grade
+     * @param grade The grade to calculate the colour from
+     * @return Color object calculated from the grade
+     */
+    
     private static Color calculateColor(double grade) {
         double redColor = clamp(25 * Math.pow(1.022, grade) + 50 - 25, 0, 255);
         Color returnColor = new Color((int) redColor, 0, 0);
         return returnColor;
     }
+    
+    /**
+     * Draws the rectangles and text
+     * @param g2 Graphics2D object
+     * @param textColor Color of the text
+     * @param startX X-coordinate of where to put first rectangle; others will be placed accordingly
+     * @param startY Y-coordinate of where to put first rectangle 
+     * @param sizeX Width of the rectangles
+     * @param yScale How far the rectangles should extend down
+     */
     
     private void drawRectangles(Graphics2D g2, Color textColor, double startX, double startY, 
             double sizeX, double yScale) {
@@ -116,13 +131,20 @@ public class CTIS210Lab3 extends Canvas {
         }
         
         g2.setColor(textColor);
-        // asdf
         for (int i = 0; i < courseNames.length; i++) {
             textX = (startX + (sizeX / 2)) + (i * sizeX);
             g2.drawString(courseNames[i], (int) textX, (int) (textY + (yScale * (grades[i] / 100) / 2)));
         }
         
     }
+    
+    /**
+     * If number is bigger than max, make it max; if number is smaller than min, make it min
+     * @param value Value to clamp
+     * @param min Minimum value of value
+     * @param max Maximum value of value
+     * @return clamped number
+     */
     
     public static double clamp(double value, int min, int max) {
         if (value < min) value = min;

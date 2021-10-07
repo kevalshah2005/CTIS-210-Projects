@@ -5,6 +5,8 @@
  */
 package sandbox;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -12,18 +14,34 @@ import java.util.Scanner;
  * @author keval
  */
 public class Sandbox {
+    
+    static Random rand;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Dog dog = new Dog("Fido", 10, "Red");
-        dog.bark();
-        System.out.println(dog.getAge());
+        rand = new Random();
+        ArrayList<Integer> diceResults = rollDice(20, 10000);
+        for (int i = 0; i < diceResults.size(); i++) {
+            System.out.printf("Die %d result: %d\n", i + 1, (int) diceResults.get(i));
+        }
         
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter two numbers to multiply: ");
-        System.out.println(scan.nextInt() * scan.nextInt());
+    }
+    
+    /**
+     * Rolls dice according to the number of faces and dice specified
+     * @param faces The number of faces on the dice
+     * @param dice The number of dice to roll
+     * @return An array with the results of rolling the dice
+     */
+    public static ArrayList<Integer> rollDice(int faces, int dice) {
+        ArrayList<Integer> diceResults = new ArrayList<>();
+        for (int i = 0; i < dice; i++) {
+            diceResults.add(rand.nextInt(faces) + 1);
+        }
+        
+        return diceResults;
     }
     
 }
