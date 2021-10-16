@@ -140,7 +140,7 @@ public class CTIS210Lab5 extends Canvas {
                 //If the pixel color isn't close enough to the specified color of the overlay,
                 //draw it on the background
                 if (colorDistance(rOutput, gOutput, bOutput, redClear, greenClear, blueClear) > tolerance) {
-                    raster.setPixel(w + shiftX, h + shiftY, new int[]{rOutput, gOutput, bOutput, 255});
+                    raster.setPixel(w + shiftX, h + shiftY, new int[]{rOutput, gOutput, bOutput});
                 }
             }
         }
