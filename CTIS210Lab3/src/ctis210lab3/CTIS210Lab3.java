@@ -146,7 +146,7 @@ public class CTIS210Lab3 extends Canvas {
      * @return clamped number
      */
     
-    public static double clamp(double value, int min, int max) {
+    public static double clamp(double value, double min, double max) {
         if (value < min) value = min;
         if (value > max) value = max;
         return value;
