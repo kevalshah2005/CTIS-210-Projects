@@ -17,6 +17,8 @@ public class SelfDrivingCar {
     public static void main(String[] args) {
         // TODO code application logic here
         Creature creature = new Creature();
+        
+        System.out.println(creature);
     }
     
 }

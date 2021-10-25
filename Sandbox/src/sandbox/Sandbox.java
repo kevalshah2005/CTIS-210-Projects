@@ -6,8 +6,13 @@
 package sandbox;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
+import java.lang.Thread;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -21,12 +26,33 @@ public class Sandbox {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        /*
         rand = new Random();
         ArrayList<Integer> diceResults = rollDice(20, 10000);
         for (int i = 0; i < diceResults.size(); i++) {
             System.out.printf("Die %d result: %d\n", i + 1, (int) diceResults.get(i));
         }
+        */
         
+        Instant time1 = Instant.now();
+        try {
+            Thread.sleep(13628);
+        } catch (Exception e) {
+            Thread.currentThread().interrupt();
+        }
+        Instant time2 = Instant.now();
+        
+        long deltaTime = Duration.between(time1, time2).toMillis();
+        
+        long millis = deltaTime % 1000;
+        deltaTime /= 1000;
+        long sec = deltaTime % 60;
+        deltaTime /= 60;
+        long min = deltaTime % 60;
+        deltaTime /= 60;
+        long hours = deltaTime % 24;
+        deltaTime /= 24;
+        System.out.printf("%d hours, %d minutes, %d seconds, %d milliseconds", hours, min, sec, millis);
     }
     
     /**
@@ -43,5 +69,6 @@ public class Sandbox {
         
         return diceResults;
     }
+    
     
 }
