@@ -34,11 +34,15 @@ public class PositionApplicant {
         this.databaseSystems = databaseSystems;
         this.algorithms = algorithms;
         this.gpa = gpa;
+        setGrades();
     }
     
     public double calculateAverageScore() {
-        double averageScore;
-        averageScore = (introCompProg + advCompProg + operatingSystems + networking + databaseSystems + algorithms + gpa) / 7;
+        double averageScore = 0;
+        for (double grade : grades) {
+            averageScore += grade;
+        }
+        averageScore /= grades.size();
         return averageScore;
     }
     
